@@ -1,10 +1,10 @@
-import groovy.json.*
-node('master') {
- deleteDir()
- stage('retrieve_RC') {
-  println(":::::::::::checkout scm:::::::::::::::::::::::::::::::")
-  def scmInfo = checkout scm
-  sh "ls"
- }
-
+pipeline {
+    agent any {
+    stage('Checkout') {
+        git credentialsId: "RTID_BOT_USER_BASIC", url: 'https://github.com/samsysengg/simple-java-maven-app.git', branch: 'master'
+    }
+    stage('Listing files') {
+                        sh 'ls'
+        }
+    }
 }
